@@ -15,11 +15,15 @@ final class MainCell: UITableViewCell {
     @IBOutlet weak var viewerLabel: UILabel!
     @IBOutlet weak var chanel: UILabel!
     
-    func bind(item: Game) {
-        chanel.text = "Channels - \(item.channelsCount ?? 0)"
-        viewerLabel.text = "Viewers - \(item.viewersCount ?? 0)"
-        titleLabel.text = item.gameDetail?.name
-        logoImageView.kf.setImage(with: URL(string: item.gameDetail?.image?.medium ?? ""))
+    func bind(item: GameListItem) {
+        guard let itema: GameListItem = item as? GameListItem else {
+            fatalError("Incorrect item")
+        }
+        
+        chanel.text = "Channels - \(itema.games.channelsCount ?? 0)"
+        viewerLabel.text = "Viewers - \(itema.games.viewersCount ?? 0)"
+        titleLabel.text = itema.games.gameDetail?.name
+        logoImageView.kf.setImage(with: URL(string: itema.games.gameDetail?.image?.medium ?? ""))
     }
 
     override func awakeFromNib() {

@@ -7,6 +7,7 @@
 
 import Foundation
 import ObjectMapper
+import Realm
 import RealmSwift
 
 class GamesWrapper: Object, Decodable, Mappable {
@@ -24,14 +25,16 @@ class GamesWrapper: Object, Decodable, Mappable {
     }
 }
 
-class Game: Object, Decodable, Mappable{
+final class Game: Object, Decodable, Mappable{
     
-    dynamic var channelsCount: Int?
-    dynamic var viewersCount: Int?
-    dynamic var gameDetail: GameDetail?
+    @objc dynamic var channelsCount: Int = 0
+    @objc dynamic var viewersCount: Int = 0
+    @objc dynamic var gameDetail: GameDetail?
     
-    required convenience init?(map: Map) {
-        self.init()
+    init?(map: Map) {}
+    
+    required init() {
+        super.init()
     }
     
     func mapping(map: Map) {
@@ -41,13 +44,16 @@ class Game: Object, Decodable, Mappable{
     }
 }
 
-class GameDetail: Object, Decodable, Mappable {
-    dynamic var image: Image?
-    dynamic var name: String?
+final class GameDetail: Object, Decodable, Mappable {
+    @objc dynamic var image: Image?
+    @objc dynamic var name: String = ""
     
-    required convenience init?(map: Map) {
-        self.init()
+    init?(map: Map) { }
+    
+    required init() {
+        super.init()
     }
+    
     
     func mapping(map: Map) {
         image         <- map["box"]
@@ -55,13 +61,16 @@ class GameDetail: Object, Decodable, Mappable {
     }
 }
 
-class Image: Object, Decodable, Mappable {
+final class Image: Object, Decodable, Mappable {
     
-    dynamic var medium: String?
+    @objc dynamic var medium: String = ""
     
-    required convenience init?(map: Map) {
-        self.init()
+    init?(map: Map) {}
+    
+    required init() {
+        super.init()
     }
+    
     
     func mapping(map: Map) {
         medium <- map["medium"]

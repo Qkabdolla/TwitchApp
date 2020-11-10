@@ -7,55 +7,49 @@
 
 import RealmSwift
 
-final class DBService {
-    
-    func create(_ object: Game) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(object)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func clearAll() {
-        do {
-            let realm = try Realm()
-            try! realm.write {
-                realm.deleteAll()
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    func getdata() -> [Any] {
-        do {
-            let realm = try Realm()
-            let objects = realm.objects(Game.self)
-            return objects.toArray()
-        } catch {
-            print(error.localizedDescription)
-            return []
-        }
-    }
-    
-    func fetch<T: Object>(with type: T.Type) throws -> Results<T>? {
-        do {
-            let realm = try Realm()
-            return realm.objects(T.self)
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
+protocol DBManager {
+    func update(_ objects: [Game])
+    func fetch() -> [Game]
+    func save(_ objects: [Game])
 }
 
-extension Results {
-
-    func toArray() -> [Any] {
-        return self.map{$0}
+final class DBService: DBManager {
+    
+    private lazy var realm: Realm = {
+        let rlm: Realm
+        
+        do {
+            rlm = try Realm()
+        } catch let error{
+            fatalError(error.localizedDescription)
+        }
+        
+        return rlm
+    }()
+    
+    func update(_ objects: [Game]) {
+        do {
+            try realm.write {
+                realm.deleteAll()
+                realm.add(objects)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func save(_ objects: [Game]) {
+        do {
+            try realm.write {
+                realm.add(objects)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetch() -> [Game] {
+        let objects = realm.objects(Game.self)
+        return Array(objects)
     }
 }

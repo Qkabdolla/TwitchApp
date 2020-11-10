@@ -18,5 +18,6 @@ target 'TwitchApp' do
     pod 'R.swift'
     pod 'Swinject'
     pod 'SwinjectAutoregistration', '2.7.0'
-
+    
+    pod 'SwiftyStarRatingView'
 end

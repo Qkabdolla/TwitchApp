@@ -14,9 +14,13 @@
 		BB37695025529B4A009E136D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37694F25529B4A009E136D /* MainViewModel.swift */; };
 		BB37695325529F66009E136D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37695225529F66009E136D /* ViewModel.swift */; };
 		BB37695625529FCE009E136D /* MvvmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37695525529FCE009E136D /* MvvmViewController.swift */; };
-		BB3769592552A026009E136D /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3769582552A026009E136D /* Commands.swift */; };
+		BB3769592552A026009E136D /* DataListProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3769582552A026009E136D /* DataListProperty.swift */; };
 		BB37695C2552BA2B009E136D /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37695B2552BA2B009E136D /* Games.swift */; };
 		BB37696D25545B06009E136D /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37696C25545B06009E136D /* DBService.swift */; };
+		BB376970255528ED009E136D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37696F255528EC009E136D /* Service.swift */; };
+		BB3848BF25594B2000DB8DD2 /* GameListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3848BE25594B2000DB8DD2 /* GameListItem.swift */; };
+		BB3848C425594BCF00DB8DD2 /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3848C325594BCF00DB8DD2 /* Applicable.swift */; };
+		BB3896C92559A82B00B8A758 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3896C82559A82B00B8A758 /* RateViewController.swift */; };
 		BBA3A0092551448D006DA588 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A0082551448D006DA588 /* AppDelegate.swift */; };
 		BBA3A00B2551448D006DA588 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A00A2551448D006DA588 /* SceneDelegate.swift */; };
 		BBA3A00D2551448D006DA588 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A00C2551448D006DA588 /* MainViewController.swift */; };
@@ -37,9 +41,13 @@
 		BB37694F25529B4A009E136D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		BB37695225529F66009E136D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BB37695525529FCE009E136D /* MvvmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MvvmViewController.swift; sourceTree = "<group>"; };
-		BB3769582552A026009E136D /* Commands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
+		BB3769582552A026009E136D /* DataListProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListProperty.swift; sourceTree = "<group>"; };
 		BB37695B2552BA2B009E136D /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		BB37696C25545B06009E136D /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
+		BB37696F255528EC009E136D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BB3848BE25594B2000DB8DD2 /* GameListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListItem.swift; sourceTree = "<group>"; };
+		BB3848C325594BCF00DB8DD2 /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
+		BB3896C82559A82B00B8A758 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		BBA3A0052551448D006DA588 /* TwitchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA3A0082551448D006DA588 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBA3A00A2551448D006DA588 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 			children = (
 				BB376932255157B7009E136D /* NetworkService.swift */,
 				BB37696C25545B06009E136D /* DBService.swift */,
+				BB37696F255528EC009E136D /* Service.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -138,7 +147,8 @@
 			children = (
 				BB37695225529F66009E136D /* ViewModel.swift */,
 				BB37695525529FCE009E136D /* MvvmViewController.swift */,
-				BB3769582552A026009E136D /* Commands.swift */,
+				BB3769582552A026009E136D /* DataListProperty.swift */,
+				BB3848C325594BCF00DB8DD2 /* Applicable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -157,8 +167,8 @@
 		BBA3A02C255148D0006DA588 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				BBA3A00C2551448D006DA588 /* MainViewController.swift */,
-				BB37694F25529B4A009E136D /* MainViewModel.swift */,
+				BBE33FE5255A5F9C002660BF /* Rate */,
+				BBE33FE4255A5F95002660BF /* Main */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -186,6 +196,24 @@
 				BBA3A01325514490006DA588 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		BBE33FE4255A5F95002660BF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BBA3A00C2551448D006DA588 /* MainViewController.swift */,
+				BB37694F25529B4A009E136D /* MainViewModel.swift */,
+				BB3848BE25594B2000DB8DD2 /* GameListItem.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		BBE33FE5255A5F9C002660BF /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				BB3896C82559A82B00B8A758 /* RateViewController.swift */,
+			);
+			path = Rate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,13 +353,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA3A00D2551448D006DA588 /* MainViewController.swift in Sources */,
+				BB376970255528ED009E136D /* Service.swift in Sources */,
 				BB37695325529F66009E136D /* ViewModel.swift in Sources */,
+				BB3896C92559A82B00B8A758 /* RateViewController.swift in Sources */,
 				BBA3A0092551448D006DA588 /* AppDelegate.swift in Sources */,
 				BB37695C2552BA2B009E136D /* Games.swift in Sources */,
 				BBA3A00B2551448D006DA588 /* SceneDelegate.swift in Sources */,
 				BBA3A039255149F9006DA588 /* R.generated.swift in Sources */,
 				BB376933255157B7009E136D /* NetworkService.swift in Sources */,
-				BB3769592552A026009E136D /* Commands.swift in Sources */,
+				BB3848C425594BCF00DB8DD2 /* Applicable.swift in Sources */,
+				BB3769592552A026009E136D /* DataListProperty.swift in Sources */,
+				BB3848BF25594B2000DB8DD2 /* GameListItem.swift in Sources */,
 				BB37692125514E8A009E136D /* MainCell.swift in Sources */,
 				BB37696D25545B06009E136D /* DBService.swift in Sources */,
 				BB37694D25529AD3009E136D /* DI.swift in Sources */,

@@ -249,10 +249,16 @@ struct _R: Rswift.Validatable {
 
       let bundle = R.hostingBundle
       let name = "Main"
+      let rateViewController = StoryboardViewControllerResource<RateViewController>(identifier: "RateViewController")
+
+      func rateViewController(_: Void = ()) -> RateViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: rateViewController)
+      }
 
       static func validate() throws {
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
+        if _R.storyboard.main().rateViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'rateViewController' could not be loaded from storyboard 'Main' as 'RateViewController'.") }
       }
 
       fileprivate init() {}
