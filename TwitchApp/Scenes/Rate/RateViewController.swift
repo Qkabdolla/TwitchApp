@@ -7,73 +7,75 @@
 
 import UIKit
 import SwiftyStarRatingView
+import RxSwift
+import RxCocoa
 
-class RateViewController: UIViewController {
+class RateViewController: MvvmViewController<RateViewModel> {
     
     @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var rateStarView: SwiftyStarRatingView!
     @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configueUI()
-        addGesturs()
+        initViews()
+        bindViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateIn()
+        animateOut(false)
     }
     
-    private func configueUI() {
+    override func bindViewModel() {
+        super.bindViewModel()
+        sendButton.rx.tap.bind { [unowned self] in
+            self.viewModel.value = self.rateStarView.value
+            self.viewModel.showAlert()
+        }.disposed(by: bag)
+        
+        bind(viewModel.dissmisScreenCommand) { [weak self] in
+            self?.animateOut(true)
+        }
+    }
+    
+    private func initViews() {
         popUpView.transform = CGAffineTransform(translationX: 0, y: -self.view.frame.height)
         view.alpha = 0
+        addGestures()
     }
     
-    private func addGesturs() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(animateOut))
+    private func addGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         tap.delegate = self
         view.addGestureRecognizer(tap)
     }
     
-    @objc private func animateOut() {
+    @objc private func handleTap() {
+        animateOut(true)
+    }
+    
+    @objc private func animateOut(_ bool: Bool) {
+        let outPosition = CGAffineTransform(translationX: 0, y: -self.view.frame.height)
+        
         UIView.animate(withDuration: 0.5,
                        delay: 0,
                        usingSpringWithDamping: 0.7,
                        initialSpringVelocity: 1,
-                       options: .curveEaseIn) {
-            self.popUpView.transform = CGAffineTransform(translationX: 0, y: -self.view.frame.height)
-            self.view.alpha = 0
-        } completion: { complete in
-            if complete {
-                self.dismiss(animated: false)
+                       options: .curveEaseIn) { [weak self] in
+            self?.popUpView.transform = bool ? outPosition : .identity
+            self?.view.alpha = bool ? 0 : 1
+        } completion: { [weak self] complete in
+            if complete, bool {
+                self?.dismiss(animated: false)
             }
         }
-    }
-    
-    private func animateIn() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 1,
-                       options: .curveEaseIn) {
-            self.popUpView.transform = .identity
-            self.view.alpha = 1
-        }
-    }
-    
-    @IBAction func sendTapped(_ sender: UIButton) {
-        print(rateStarView.value)
-        animateOut()
     }
 }
 
 extension RateViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view != view {
-            return false
-        } else {
-            return true
-        }
+        return touch.view == view
     }
 }

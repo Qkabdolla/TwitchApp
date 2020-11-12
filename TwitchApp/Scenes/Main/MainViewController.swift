@@ -12,7 +12,8 @@ import RxCocoa
 final class MainViewController: MvvmViewController<MainViewModel> {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var rightBarItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
@@ -23,19 +24,20 @@ final class MainViewController: MvvmViewController<MainViewModel> {
         viewModel.getData()
     }
 
-    private func bindViewModel() {
+    override func bindViewModel() {
+        super.bindViewModel()
         bind(viewModel.data) { [weak self] _ in self?.tableView.reloadData() }
+        
+        rightBarItem.action { [weak self] in
+            guard let viewController = R.storyboard.main.rateViewController() else { return }
+            viewController.modalPresentationStyle = .overFullScreen
+            self?.present(viewController, animated: false)
+        }
     }
     
     private func initViews() {
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    @IBAction func rateTapped(_ sender: Any) {
-        guard let viewController = R.storyboard.main.rateViewController() else { return }
-        viewController.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: false)
     }
 }
 
@@ -46,11 +48,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!.apply { $0.bind(item: viewModel.getItem(by: indexPath.row) ) }
+        tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!.apply {
+            $0.bind(item: viewModel.getItem(by: indexPath.row)) }
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row + 1 == viewModel.numberOfItems() {
+
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height * 0.60 {
             viewModel.getData()
         }
     }

@@ -172,10 +172,41 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
     struct localizable {
+      /// Value: OK
+      static let okTitle = Rswift.StringResource(key: "OkTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Top Games
       static let mainVCTitle = Rswift.StringResource(key: "MainVCTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Вы поставили
+      static let youPutTitle = Rswift.StringResource(key: "youPutTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Повторить
+      static let retryTitle = Rswift.StringResource(key: "retryTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Пожалуйста, подключитесь к сети и повторите попытку
+      static let lostInternetConnectionBodyTitle = Rswift.StringResource(key: "lostInternetConnectionBodyTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Спасибо
+      static let thanksTitle = Rswift.StringResource(key: "thanksTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: У вас отсутствует интернет соединение
+      static let lostInternetConnectionTitle = Rswift.StringResource(key: "lostInternetConnectionTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: балл
+      static let pointV1Title = Rswift.StringResource(key: "pointV1Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: балла
+      static let pointV2Title = Rswift.StringResource(key: "pointV2Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: баллов
+      static let pointV3Title = Rswift.StringResource(key: "pointV3Title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: OK
+      static func okTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("OkTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "OkTitle"
+        }
+
+        return NSLocalizedString("OkTitle", bundle: bundle, comment: "")
+      }
 
       /// Value: Top Games
       static func mainVCTitle(preferredLanguages: [String]? = nil) -> String {
@@ -188,6 +219,110 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("MainVCTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: Вы поставили
+      static func youPutTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("youPutTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "youPutTitle"
+        }
+
+        return NSLocalizedString("youPutTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: Повторить
+      static func retryTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("retryTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "retryTitle"
+        }
+
+        return NSLocalizedString("retryTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: Пожалуйста, подключитесь к сети и повторите попытку
+      static func lostInternetConnectionBodyTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("lostInternetConnectionBodyTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "lostInternetConnectionBodyTitle"
+        }
+
+        return NSLocalizedString("lostInternetConnectionBodyTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: Спасибо
+      static func thanksTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("thanksTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "thanksTitle"
+        }
+
+        return NSLocalizedString("thanksTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: У вас отсутствует интернет соединение
+      static func lostInternetConnectionTitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("lostInternetConnectionTitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "lostInternetConnectionTitle"
+        }
+
+        return NSLocalizedString("lostInternetConnectionTitle", bundle: bundle, comment: "")
+      }
+
+      /// Value: балл
+      static func pointV1Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("pointV1Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "pointV1Title"
+        }
+
+        return NSLocalizedString("pointV1Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: балла
+      static func pointV2Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("pointV2Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "pointV2Title"
+        }
+
+        return NSLocalizedString("pointV2Title", bundle: bundle, comment: "")
+      }
+
+      /// Value: баллов
+      static func pointV3Title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("pointV3Title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "pointV3Title"
+        }
+
+        return NSLocalizedString("pointV3Title", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

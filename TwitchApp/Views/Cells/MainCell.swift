@@ -16,14 +16,14 @@ final class MainCell: UITableViewCell {
     @IBOutlet weak var chanel: UILabel!
     
     func bind(item: GameListItem) {
-        guard let itema: GameListItem = item as? GameListItem else {
-            fatalError("Incorrect item")
-        }
-        
-        chanel.text = "Channels - \(itema.games.channelsCount ?? 0)"
-        viewerLabel.text = "Viewers - \(itema.games.viewersCount ?? 0)"
-        titleLabel.text = itema.games.gameDetail?.name
-        logoImageView.kf.setImage(with: URL(string: itema.games.gameDetail?.image?.medium ?? ""))
+        chanel.text = "Channels - \(item.games.channelsCount)"
+        viewerLabel.text = "Viewers - \(item.games.viewersCount)"
+        titleLabel.text = item.games.gameDetail?.name
+        logoImageView.kf.setImage(with: URL(string: item.games.gameDetail?.image?.medium ?? ""))
+    }
+    
+    override func prepareForReuse() {
+        logoImageView.image = nil
     }
 
     override func awakeFromNib() {

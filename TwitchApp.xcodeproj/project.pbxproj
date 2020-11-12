@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		57BA3CC6DFC84D643436F131 /* Pods_TwitchApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD3FC633CCD63B983C95092 /* Pods_TwitchApp.framework */; };
+		BB3335FF255ABD8200516269 /* RateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3335FE255ABD8200516269 /* RateViewModel.swift */; };
+		BB333602255BAA1D00516269 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB333601255BAA1D00516269 /* Command.swift */; };
 		BB37692125514E8A009E136D /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37692025514E8A009E136D /* MainCell.swift */; };
 		BB376933255157B7009E136D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB376932255157B7009E136D /* NetworkService.swift */; };
 		BB37694D25529AD3009E136D /* DI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37694C25529AD3009E136D /* DI.swift */; };
@@ -17,10 +19,12 @@
 		BB3769592552A026009E136D /* DataListProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3769582552A026009E136D /* DataListProperty.swift */; };
 		BB37695C2552BA2B009E136D /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37695B2552BA2B009E136D /* Games.swift */; };
 		BB37696D25545B06009E136D /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37696C25545B06009E136D /* DBService.swift */; };
-		BB376970255528ED009E136D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37696F255528EC009E136D /* Service.swift */; };
+		BB376970255528ED009E136D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB37696F255528EC009E136D /* DataService.swift */; };
 		BB3848BF25594B2000DB8DD2 /* GameListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3848BE25594B2000DB8DD2 /* GameListItem.swift */; };
 		BB3848C425594BCF00DB8DD2 /* Applicable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3848C325594BCF00DB8DD2 /* Applicable.swift */; };
 		BB3896C92559A82B00B8A758 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3896C82559A82B00B8A758 /* RateViewController.swift */; };
+		BB3D150A255BEC4E003FE310 /* ParameteredCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D1509255BEC4E003FE310 /* ParameteredCommand.swift */; };
+		BB3D150E255BED35003FE310 /* UIBarButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D150D255BED35003FE310 /* UIBarButton+Ext.swift */; };
 		BBA3A0092551448D006DA588 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A0082551448D006DA588 /* AppDelegate.swift */; };
 		BBA3A00B2551448D006DA588 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A00A2551448D006DA588 /* SceneDelegate.swift */; };
 		BBA3A00D2551448D006DA588 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A00C2551448D006DA588 /* MainViewController.swift */; };
@@ -29,12 +33,15 @@
 		BBA3A01525514490006DA588 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA3A01325514490006DA588 /* LaunchScreen.storyboard */; };
 		BBA3A03325514971006DA588 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBA3A03225514971006DA588 /* Localizable.strings */; };
 		BBA3A039255149F9006DA588 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA3A038255149F9006DA588 /* R.generated.swift */; };
+		BBEDF142255D23FB00411A7D /* NetworkMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEDF141255D23FB00411A7D /* NetworkMonitorService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1AD3FC633CCD63B983C95092 /* Pods_TwitchApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitchApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0AEBBB8593A04A7FC16404 /* Pods-TwitchApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitchApp.release.xcconfig"; path = "Target Support Files/Pods-TwitchApp/Pods-TwitchApp.release.xcconfig"; sourceTree = "<group>"; };
 		BA1242C19A1A3F02216257A1 /* Pods-TwitchApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitchApp.debug.xcconfig"; path = "Target Support Files/Pods-TwitchApp/Pods-TwitchApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB3335FE255ABD8200516269 /* RateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModel.swift; sourceTree = "<group>"; };
+		BB333601255BAA1D00516269 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		BB37692025514E8A009E136D /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		BB376932255157B7009E136D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		BB37694C25529AD3009E136D /* DI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DI.swift; sourceTree = "<group>"; };
@@ -44,10 +51,12 @@
 		BB3769582552A026009E136D /* DataListProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListProperty.swift; sourceTree = "<group>"; };
 		BB37695B2552BA2B009E136D /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
 		BB37696C25545B06009E136D /* DBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
-		BB37696F255528EC009E136D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		BB37696F255528EC009E136D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		BB3848BE25594B2000DB8DD2 /* GameListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListItem.swift; sourceTree = "<group>"; };
 		BB3848C325594BCF00DB8DD2 /* Applicable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Applicable.swift; sourceTree = "<group>"; };
 		BB3896C82559A82B00B8A758 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		BB3D1509255BEC4E003FE310 /* ParameteredCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameteredCommand.swift; sourceTree = "<group>"; };
+		BB3D150D255BED35003FE310 /* UIBarButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButton+Ext.swift"; sourceTree = "<group>"; };
 		BBA3A0052551448D006DA588 /* TwitchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA3A0082551448D006DA588 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BBA3A00A2551448D006DA588 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +67,7 @@
 		BBA3A01625514490006DA588 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBA3A03225514971006DA588 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		BBA3A038255149F9006DA588 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		BBEDF141255D23FB00411A7D /* NetworkMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,9 +112,31 @@
 			children = (
 				BB376932255157B7009E136D /* NetworkService.swift */,
 				BB37696C25545B06009E136D /* DBService.swift */,
-				BB37696F255528EC009E136D /* Service.swift */,
+				BB37696F255528EC009E136D /* DataService.swift */,
+				BBEDF141255D23FB00411A7D /* NetworkMonitorService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		BB3D150C255BED22003FE310 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				BB3D150D255BED35003FE310 /* UIBarButton+Ext.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		BB3D1510255BF678003FE310 /* Mvvm */ = {
+			isa = PBXGroup;
+			children = (
+				BB37695225529F66009E136D /* ViewModel.swift */,
+				BB37695525529FCE009E136D /* MvvmViewController.swift */,
+				BB3769582552A026009E136D /* DataListProperty.swift */,
+				BB3848C325594BCF00DB8DD2 /* Applicable.swift */,
+				BB333601255BAA1D00516269 /* Command.swift */,
+				BB3D1509255BEC4E003FE310 /* ParameteredCommand.swift */,
+			);
+			path = Mvvm;
 			sourceTree = "<group>";
 		};
 		BBA39FFC2551448D006DA588 = {
@@ -145,10 +177,8 @@
 		BBA3A02A255148B8006DA588 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BB37695225529F66009E136D /* ViewModel.swift */,
-				BB37695525529FCE009E136D /* MvvmViewController.swift */,
-				BB3769582552A026009E136D /* DataListProperty.swift */,
-				BB3848C325594BCF00DB8DD2 /* Applicable.swift */,
+				BB3D1510255BF678003FE310 /* Mvvm */,
+				BB3D150C255BED22003FE310 /* Extentions */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -212,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				BB3896C82559A82B00B8A758 /* RateViewController.swift */,
+				BB3335FE255ABD8200516269 /* RateViewModel.swift */,
 			);
 			path = Rate;
 			sourceTree = "<group>";
@@ -352,8 +383,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB3D150A255BEC4E003FE310 /* ParameteredCommand.swift in Sources */,
 				BBA3A00D2551448D006DA588 /* MainViewController.swift in Sources */,
-				BB376970255528ED009E136D /* Service.swift in Sources */,
+				BB376970255528ED009E136D /* DataService.swift in Sources */,
 				BB37695325529F66009E136D /* ViewModel.swift in Sources */,
 				BB3896C92559A82B00B8A758 /* RateViewController.swift in Sources */,
 				BBA3A0092551448D006DA588 /* AppDelegate.swift in Sources */,
@@ -362,12 +394,16 @@
 				BBA3A039255149F9006DA588 /* R.generated.swift in Sources */,
 				BB376933255157B7009E136D /* NetworkService.swift in Sources */,
 				BB3848C425594BCF00DB8DD2 /* Applicable.swift in Sources */,
+				BBEDF142255D23FB00411A7D /* NetworkMonitorService.swift in Sources */,
 				BB3769592552A026009E136D /* DataListProperty.swift in Sources */,
 				BB3848BF25594B2000DB8DD2 /* GameListItem.swift in Sources */,
 				BB37692125514E8A009E136D /* MainCell.swift in Sources */,
 				BB37696D25545B06009E136D /* DBService.swift in Sources */,
 				BB37694D25529AD3009E136D /* DI.swift in Sources */,
+				BB3D150E255BED35003FE310 /* UIBarButton+Ext.swift in Sources */,
+				BB333602255BAA1D00516269 /* Command.swift in Sources */,
 				BB37695625529FCE009E136D /* MvvmViewController.swift in Sources */,
+				BB3335FF255ABD8200516269 /* RateViewModel.swift in Sources */,
 				BB37695025529B4A009E136D /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +553,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S532B766L;
 				INFOPLIST_FILE = TwitchApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -536,6 +573,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8S532B766L;
 				INFOPLIST_FILE = TwitchApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

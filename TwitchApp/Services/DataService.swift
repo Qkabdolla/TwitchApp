@@ -23,16 +23,14 @@ final class DataService {
     }
     
     let subject = PublishSubject<[Game]>()
+    var page: Int = 0
     
     init(_ networkService: NetworkService, _ dbService: DBService) {
         self.networkService = networkService
         self.dbService = dbService
     }
     
-    private var page = 0
-    
     func fetchAndSaveData() {
-        guard page >= 0 else { return }
         networkService.request(page: page)
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
             .subscribe { [unowned self] (games) in
@@ -43,12 +41,15 @@ final class DataService {
                 } else {
                     self.dbService.update(games)
                 }
-                
+
                 self.page += 1
             } onFailure: { [unowned self] (error) in
                 print(error.localizedDescription)
                 self.games = self.dbService.fetch()
-                self.page = -1
         }.disposed(by: bag)
+    }
+    
+    func fetchDataFromDb() {
+        games = dbService.fetch()
     }
 }

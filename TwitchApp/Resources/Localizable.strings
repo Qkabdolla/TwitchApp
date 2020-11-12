@@ -7,3 +7,13 @@
 */
 
 "MainVCTitle" = "Top Games";
+"OkTitle" = "OK";
+"thanksTitle" = "Спасибо";
+"youPutTitle" = "Вы поставили";
+"pointV1Title" = "балл";
+"pointV2Title" = "балла";
+"pointV3Title" = "баллов";
+
+"lostInternetConnectionTitle" = "У вас отсутствует интернет соединение";
+"lostInternetConnectionBodyTitle" = "Пожалуйста, подключитесь к сети и повторите попытку";
+"retryTitle" = "Повторить";

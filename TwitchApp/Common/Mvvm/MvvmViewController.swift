@@ -34,4 +34,27 @@ class MvvmViewController<TViewModel> : UIViewController, MvvmController where TV
         
         _viewModel = viewModelProvider()
     }
+    
+    func bindViewModel() {
+        bind(viewModel.showConfirmAlertControllerCommand) { [weak self] args in
+            let alert = UIAlertController(title: args.title, message: args.message, preferredStyle: .alert)
+            let OKAlertAction = UIAlertAction(
+                    title: args.okButtonTitle,
+                    style: .default
+            ) { _ in
+                args.okAction()
+            }
+
+            if let custom =  args.customButtonTitle {
+                let customAlertAction = UIAlertAction(title: custom, style: .default) { _ in
+                    args.customAction()
+                }
+                alert.addAction(customAlertAction)
+            }
+            
+            alert.addAction(OKAlertAction)
+
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
 }

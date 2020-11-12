@@ -8,17 +8,24 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import Realm
 
 final class MainViewModel: ViewModel {
     
     private let dataService: DataService
+    private let networkMonitor: NetworkMonitorService
+    
     let title = R.string.localizable.mainVCTitle()
+    let lostInternetTitle = R.string.localizable.lostInternetConnectionTitle()
+    let lostInternetBodyTitle = R.string.localizable.lostInternetConnectionBodyTitle()
+    let retryTitle = R.string.localizable.retryTitle()
+    
+    private var counter: Int = 0
     
     var data = DataList<GameListItem>()
     
-    init(_ dataService: DataService) {
+    init(_ dataService: DataService, _ networkMonitor: NetworkMonitorService) {
         self.dataService = dataService
+        self.networkMonitor = networkMonitor
     }
     
     func initialize() {
@@ -28,6 +35,26 @@ final class MainViewModel: ViewModel {
             .subscribe (onNext: { [unowned self] in
             self.data.value = $0.map { GameListItem(from: $0) }
         } ).disposed(by: bag)
+        
+        networkMonitor.isConnected.subscribe(onNext:  { value in
+            
+            if value == true {
+                let temp = self.data.value.count
+                let dtemp = Double(temp) / 20
+                let page = round(dtemp)
+                self.dataService.page = Int(page)
+                self.dataService.fetchAndSaveData()
+                self.counter = 0
+            } else {
+                
+                if self.counter < 2 {
+                    self.showAlert()
+                    self.counter += 1
+                }
+    
+            }
+            
+        }).disposed(by: bag)
     }
     
     func numberOfItems() -> Int {
@@ -39,6 +66,17 @@ final class MainViewModel: ViewModel {
     }
     
     func getData() {
-        dataService.fetchAndSaveData()
+        networkMonitor.getInternetStatus()
+    }
+    
+    private func showAlert() {
+        self.showConfirmAlert(title: lostInternetTitle,
+                              message: lostInternetBodyTitle,
+                              okButtonTitle: retryTitle,
+                              customButtonTitle: R.string.localizable.okTitle()) {
+            self.getData()
+        }
+        
+        dataService.fetchDataFromDb()
     }
 }

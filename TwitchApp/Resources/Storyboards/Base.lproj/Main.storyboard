@@ -105,13 +105,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ynp-pm-7sO">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="sTP-7V-x5I">
-                            <connections>
-                                <action selector="rateTapped:" destination="gIo-v1-wGa" id="KFI-Qx-1Xy"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="sTP-7V-x5I"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="rightBarItem" destination="sTP-7V-x5I" id="deN-R7-Lfr"/>
                         <outlet property="tableView" destination="gLC-9Z-Zoh" id="DUr-wy-Pz4"/>
                     </connections>
                 </viewController>
@@ -140,9 +137,6 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="sendTapped:" destination="ZUh-Vf-MUu" eventType="touchUpInside" id="Q4b-N7-8TZ"/>
-                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gNW-fu-v1y">
                                         <rect key="frame" x="8" y="104" width="224" height="34"/>
@@ -198,6 +192,7 @@
                     <connections>
                         <outlet property="popUpView" destination="jY9-Bs-eYa" id="8DH-0F-fUu"/>
                         <outlet property="rateStarView" destination="M08-6W-WSC" id="6Ra-39-bKd"/>
+                        <outlet property="sendButton" destination="sjY-36-Tbj" id="9gV-z0-PpE"/>
                         <outlet property="textField" destination="gNW-fu-v1y" id="Rnu-RB-RCT"/>
                     </connections>
                 </viewController>
