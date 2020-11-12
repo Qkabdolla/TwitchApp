@@ -19,9 +19,8 @@ final class MainViewModel: ViewModel {
     let lostInternetBodyTitle = R.string.localizable.lostInternetConnectionBodyTitle()
     let retryTitle = R.string.localizable.retryTitle()
     
-    private var counter: Int = 0
-    
     var data = DataList<GameListItem>()
+    var getMoreDataStatusCounter = 0
     
     init(_ dataService: DataService, _ networkMonitor: NetworkMonitorService) {
         self.dataService = dataService
@@ -36,24 +35,18 @@ final class MainViewModel: ViewModel {
             self.data.value = $0.map { GameListItem(from: $0) }
         } ).disposed(by: bag)
         
-        networkMonitor.isConnected.subscribe(onNext:  { value in
-            
+        networkMonitor.isConnected.subscribe(onNext:  { [unowned self] value in
             if value == true {
-                let temp = self.data.value.count
-                let dtemp = Double(temp) / 20
-                let page = round(dtemp)
+                let page = round(Double(self.data.value.count) / 20)
                 self.dataService.page = Int(page)
                 self.dataService.fetchAndSaveData()
-                self.counter = 0
+                self.getMoreDataStatusCounter = 0
             } else {
-                
-                if self.counter < 2 {
+                if self.getMoreDataStatusCounter < 2 {
                     self.showAlert()
-                    self.counter += 1
+                    self.dataService.fetchDataFromDb()
                 }
-    
             }
-            
         }).disposed(by: bag)
     }
     
@@ -75,8 +68,7 @@ final class MainViewModel: ViewModel {
                               okButtonTitle: retryTitle,
                               customButtonTitle: R.string.localizable.okTitle()) {
             self.getData()
+            self.getMoreDataStatusCounter = 0
         }
-        
-        dataService.fetchDataFromDb()
     }
 }

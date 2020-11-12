@@ -43,13 +43,12 @@ final class DataService {
                 }
 
                 self.page += 1
-            } onFailure: { [unowned self] (error) in
+            } onFailure: { error in
                 print(error.localizedDescription)
-                self.games = self.dbService.fetch()
         }.disposed(by: bag)
     }
     
     func fetchDataFromDb() {
-        games = dbService.fetch()
+        self.games = self.dbService.fetch()
     }
 }
