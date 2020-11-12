@@ -62,6 +62,11 @@ final class MainViewModel: ViewModel {
         networkMonitor.getInternetStatus()
     }
     
+    func refreshData() {
+        self.dataService.page = 0
+        self.dataService.fetchAndSaveData()
+    }
+    
     private func showAlert() {
         self.showConfirmAlert(title: lostInternetTitle,
                               message: lostInternetBodyTitle,

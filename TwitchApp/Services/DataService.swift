@@ -33,13 +33,15 @@ final class DataService {
     func fetchAndSaveData() {
         networkService.request(page: page)
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe { [unowned self] (games) in
-                self.games.append(contentsOf: games)
+            .subscribe { [unowned self] (gamesResponse) in
+                
                 
                 if page > 0 {
-                    self.dbService.save(games)
+                    self.dbService.save(gamesResponse)
+                    self.games.append(contentsOf: gamesResponse)
                 } else {
-                    self.dbService.update(games)
+                    self.dbService.update(gamesResponse)
+                    self.games = gamesResponse
                 }
 
                 self.page += 1

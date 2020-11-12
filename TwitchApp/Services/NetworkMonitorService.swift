@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-class NetworkMonitorService {
+final class NetworkMonitorService {
     
     private let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
     

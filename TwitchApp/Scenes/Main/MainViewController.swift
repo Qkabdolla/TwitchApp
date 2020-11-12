@@ -14,6 +14,8 @@ final class MainViewController: MvvmViewController<MainViewModel> {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var rightBarItem: UIBarButtonItem!
     
+    private let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
@@ -26,18 +28,30 @@ final class MainViewController: MvvmViewController<MainViewModel> {
 
     override func bindViewModel() {
         super.bindViewModel()
-        bind(viewModel.data) { [weak self] _ in self?.tableView.reloadData() }
+        bind(viewModel.data) { [weak self] _ in
+            self?.tableView.reloadData()
+            self?.refreshControl.endRefreshing()
+        }
         
         rightBarItem.action { [weak self] in
             guard let viewController = R.storyboard.main.rateViewController() else { return }
             viewController.modalPresentationStyle = .overFullScreen
             self?.present(viewController, animated: false)
         }
+        
+        refreshControl.rx.controlEvent(.valueChanged)
+            .map { _ in !self.refreshControl.isRefreshing }
+            .filter { $0 == false }
+            .subscribe { _ in
+                self.viewModel.refreshData()
+            }.disposed(by: bag)
+
     }
     
     private func initViews() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
     }
 }
 
