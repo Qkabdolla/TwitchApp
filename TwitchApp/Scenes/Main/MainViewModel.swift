@@ -14,10 +14,12 @@ final class MainViewModel: ViewModel {
     private let dataService: DataService
     private let networkMonitor: NetworkMonitorService
     
-    let title = R.string.localizable.mainVCTitle()
     let lostInternetTitle = R.string.localizable.lostInternetConnectionTitle()
     let lostInternetBodyTitle = R.string.localizable.lostInternetConnectionBodyTitle()
     let retryTitle = R.string.localizable.retryTitle()
+    
+    let launchRatingScreenCommand = Command()
+    let refreshing = Visible(true)
     
     var data = DataList<GameListItem>()
     var getMoreDataStatusCounter = 0
@@ -28,26 +30,23 @@ final class MainViewModel: ViewModel {
     }
     
     func initialize() {
-        dataService.subject
-            .observe(on: MainScheduler.instance)
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
-            .subscribe (onNext: { [unowned self] in
-            self.data.value = $0.map { GameListItem(from: $0) }
-        } ).disposed(by: bag)
+        title.value = R.string.localizable.mainVCTitle()
         
         networkMonitor.isConnected.subscribe(onNext:  { [unowned self] value in
             if value == true {
                 let page = round(Double(self.data.value.count) / 20)
                 self.dataService.page = Int(page)
-                self.dataService.fetchAndSaveData()
+                self.fetchAndSave()
                 self.getMoreDataStatusCounter = 0
             } else {
                 if self.getMoreDataStatusCounter < 2 {
                     self.showAlert()
-                    self.dataService.fetchDataFromDb()
+                    self.data.value = self.dataService.getDataFromDb().map { GameListItem(from: $0) }
                 }
             }
         }).disposed(by: bag)
+        
+        getData()
     }
     
     func numberOfItems() -> Int {
@@ -58,13 +57,33 @@ final class MainViewModel: ViewModel {
         return data.value[index]
     }
     
+    private func fetchAndSave() {
+        dataService.fetchAndSaveData()
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+            .observe(on: MainScheduler.instance)
+            .subscribe {
+                self.data.value = self.dataService.getDataFromDb().map { GameListItem(from: $0) }
+            } onError: { (error) in
+                print(error.localizedDescription)
+            }.disposed(by: bag)
+    }
+    
     func getData() {
         networkMonitor.getInternetStatus()
     }
     
     func refreshData() {
-        self.dataService.page = 0
-        self.dataService.fetchAndSaveData()
+        dataService.page = 0
+        getData()
+    }
+    
+    func didTapRatingButton() {
+        launchRatingScreenCommand.call()
+    }
+    
+    func didScrollToBottom() {
+        getMoreDataStatusCounter += 1
+        getData()
     }
     
     private func showAlert() {

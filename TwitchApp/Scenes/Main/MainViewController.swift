@@ -18,12 +18,10 @@ final class MainViewController: MvvmViewController<MainViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.title
         initViews()
         bindViewModel()
         
         viewModel.initialize()
-        viewModel.getData()
     }
 
     override func bindViewModel() {
@@ -33,25 +31,27 @@ final class MainViewController: MvvmViewController<MainViewModel> {
             self?.refreshControl.endRefreshing()
         }
         
-        rightBarItem.action { [weak self] in
+        bind(viewModel.launchRatingScreenCommand) { [weak self] in
             guard let viewController = R.storyboard.main.rateViewController() else { return }
             viewController.modalPresentationStyle = .overFullScreen
             self?.present(viewController, animated: false)
         }
         
-        refreshControl.rx.controlEvent(.valueChanged)
-            .map { _ in !self.refreshControl.isRefreshing }
-            .filter { $0 == false }
-            .subscribe { _ in
-                self.viewModel.refreshData()
-            }.disposed(by: bag)
-
+        bind(viewModel.refreshing, to: refreshControl)
     }
     
     private func initViews() {
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.refreshControl = refreshControl
+        
+        rightBarItem.action { [weak self] in
+            self?.viewModel.didTapRatingButton()
+        }
+        
+        setupRefresher(and: refreshControl, for: tableView, using: #selector(refreshingStarted))
+    }
+    
+    @objc private func refreshingStarted() {
+        viewModel.refreshData()
     }
 }
 
@@ -68,8 +68,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView.contentOffset.y > scrollView.contentSize.height * 0.60 {
-            viewModel.getData()
-            viewModel.getMoreDataStatusCounter += 1
+            viewModel.didScrollToBottom()
         }
     }
 }

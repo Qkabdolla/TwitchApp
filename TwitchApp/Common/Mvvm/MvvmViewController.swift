@@ -36,6 +36,8 @@ class MvvmViewController<TViewModel> : UIViewController, MvvmController where TV
     }
     
     func bindViewModel() {
+        bind(viewModel.title, to: self)
+        
         bind(viewModel.showConfirmAlertControllerCommand) { [weak self] args in
             let alert = UIAlertController(title: args.title, message: args.message, preferredStyle: .alert)
             let OKAlertAction = UIAlertAction(
@@ -56,5 +58,14 @@ class MvvmViewController<TViewModel> : UIViewController, MvvmController where TV
 
             self?.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension MvvmViewController {
+    func setupRefresher(and refreshControl: UIRefreshControl,
+                               for tableView: UITableView,
+                               using selector: Selector) {
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: selector, for: .valueChanged)
     }
 }

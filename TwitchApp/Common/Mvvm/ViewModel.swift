@@ -12,6 +12,8 @@ class ViewModel {
     
     let bag: DisposeBag = DisposeBag()
     
+    let title = Text()
+    
     let showConfirmAlertControllerCommand = TCommand<(
             title: String,
             message: String,

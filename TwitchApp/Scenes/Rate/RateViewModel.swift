@@ -22,12 +22,18 @@ class RateViewModel: ViewModel {
         }
     }
     
-    var value: CGFloat = 1
-    let dissmisScreenCommand = Command()
+    private var value: CGFloat = 1
+    let animateScreenCommand = Command()
+    let closeScreenCommand = Command()
+    
+    func didSendTapped(with newValue: CGFloat) {
+        value = newValue
+        showAlert()
+    }
 
     func showAlert() {
         self.showConfirmAlert(title: thxText, message: messageText) { [weak self] in
-            self?.dissmisScreenCommand.call()
+            self?.animateScreenCommand.call()
         }
     }
 }

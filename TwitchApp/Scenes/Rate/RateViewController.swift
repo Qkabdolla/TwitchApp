@@ -30,13 +30,17 @@ class RateViewController: MvvmViewController<RateViewModel> {
     
     override func bindViewModel() {
         super.bindViewModel()
-        sendButton.rx.tap.bind { [unowned self] in
-            self.viewModel.value = self.rateStarView.value
-            self.viewModel.showAlert()
-        }.disposed(by: bag)
         
-        bind(viewModel.dissmisScreenCommand) { [weak self] in
+        sendButton.addTapGestureRecognizer { [unowned self] in
+            self.viewModel.didSendTapped(with: self.rateStarView.value)
+        }
+        
+        bind(viewModel.animateScreenCommand) { [weak self] in
             self?.animateOut(true)
+        }
+        
+        bind(viewModel.closeScreenCommand) { [weak self] in
+            self?.dismiss(animated: false)
         }
     }
     
@@ -68,7 +72,7 @@ class RateViewController: MvvmViewController<RateViewModel> {
             self?.view.alpha = bool ? 0 : 1
         } completion: { [weak self] complete in
             if complete, bool {
-                self?.dismiss(animated: false)
+                self?.viewModel.closeScreenCommand.call()
             }
         }
     }
