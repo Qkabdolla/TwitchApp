@@ -14,4 +14,6 @@ func registerDependencies(in container: Container) {
     container.autoregister(DBService.self, initializer: DBService.init)
     container.autoregister(DataService.self, initializer: DataService.init)
     container.autoregister(MainViewModel.self, initializer: MainViewModel.init)
+    container.autoregister(RateViewModel.self, initializer: RateViewModel.init)
+    container.autoregister(NetworkMonitorService.self, initializer: NetworkMonitorService.init)
 }

@@ -7,9 +7,7 @@
 
 import Foundation
 
-public protocol ListItem { }
-
-struct GameListItem : ListItem {
+struct GameListItem {
     
     let games: Game
     

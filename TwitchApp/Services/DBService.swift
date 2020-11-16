@@ -9,7 +9,7 @@ import RealmSwift
 
 protocol DBManager {
     func update(_ objects: [Game])
-    func fetch() -> [Game]
+    func get() -> [Game]
     func save(_ objects: [Game])
 }
 
@@ -48,7 +48,7 @@ final class DBService: DBManager {
         }
     }
     
-    func fetch() -> [Game] {
+    func get() -> [Game] {
         let objects = realm.objects(Game.self)
         return Array(objects)
     }
